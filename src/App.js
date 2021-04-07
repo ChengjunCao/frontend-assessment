@@ -13,10 +13,10 @@ class App extends React.Component {
   }
 
   render() {
-      let sum = 0
     return (
       <div className="App">
         {this.state.students.map((student, idx) => {
+          const average = student.grades.reduce((sum, curr) => sum + Number(curr), 0)/8;
           return (
             <div>
               <img src={student.pic} alt='student pic' key={idx}/>
@@ -24,12 +24,7 @@ class App extends React.Component {
               <p>Email: {student.email}</p>
               <p>Company: {student.company}</p>
               <p>Skill: {student.skill}</p>
-              <p>
-                Average: {student.grades.map((grade) => {
-                  sum += grade;
-                  return sum
-                })}
-              </p>
+              <p>Average: {average}</p>
             </div>
           )
         })}
